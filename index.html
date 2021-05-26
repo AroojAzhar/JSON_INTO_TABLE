@@ -1,0 +1,115 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reading JSon file and them in table format</title>
+
+    <!-- INCLUDING JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+
+    <!-- CSS FOR STYLING THE PAGE -->
+    <style>
+        body{
+            background-color : black;
+        }
+        table {
+            margin-top: 20px;
+            margin-left: 270px;
+            width: 70%;;
+            color: grey;
+            background-color: #0f0f0f;
+            font-size: large;
+            border: 5px solid grey;
+        }
+
+        td {
+            color: white;
+            background-color: #0f0f0f;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            background-color: #0f0f0f;
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 15px;
+            text-align: center;
+        }
+
+        td {
+            color: grey;
+            background-color: #0f0f0f;
+            font-weight: bold;
+        }
+
+        nav, img{
+            padding-top: 20px;
+            height: 120px;
+           padding-bottom: 20px;
+            padding-left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<section>
+    <div>
+        <nav>
+        <img src="img/img%202"/>
+        </nav>
+    </div>
+
+    <!-- TABLE CONSTRUCTION-->
+    <table id='table'>
+        <!-- HEADING FORMATION -->
+        <tr>
+            <th>NAME</th>
+            <th>LAST</th>
+            <th>BUY</th>
+            <th>VOLUME</th>
+            <th>BASE_UNIT</th>
+        </tr>
+
+        <script>
+            $(document).ready(function () {
+
+                // FETCHING DATA FROM JSON FILE
+                $.getJSON("people.json",
+                    function (data) {
+                        var student = '';
+
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function (key, value) {
+
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            student += '<tr>';
+                            student += '<td>' +
+                                value.name + '</td>';
+
+                            student += '<td>' +
+                                value.last + '</td>';
+
+                            student += '<td>' +
+                                value.sell + '</td>';
+
+                            student += '<td>' +
+                                value.volume + '</td>';
+
+
+                            student += '<td>' +
+                                value.base_unit + '</td>';
+
+                            student += '</tr>';
+                        });
+
+                        //INSERTING ROWS INTO TABLE
+                        $('#table').append(student);
+                    });
+            });
+        </script>
+</section>
+</body>
+</html>
